@@ -44,12 +44,12 @@ function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormD
           <Row><p><h6><b>Description</b></h6></p>{descriptionFormData}</Row>
         </Col>
         <Col style={{ marginLeft: "10rem", display: "flex", justifyContent: "space-around" }}>
-          <Button onClick={() => { console.log("two"); }}
+          <Button 
             style={{ display: "inline" }} type='primary'>
             -
           </Button>
           <Button
-            onClick={() => { console.log("one"); }}
+           
             style={{
 
               height: "2rem",
@@ -66,7 +66,7 @@ function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormD
             Add
 
           </Button>
-          <Button onClick={() => { console.log("three"); }}
+          <Button 
             style={{ display: "inline" }} type='primary'>
             +
           </Button>
