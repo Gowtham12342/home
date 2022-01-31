@@ -54,6 +54,8 @@ export default function VerticalTabs() {
     const [removedDups, setRemovedDups] = useState([]);
     const [contenttoFilter, setContenttoFilter] = useState([]);
     const [calculater, setCalculater] = useState([]);
+    
+
     useEffect(() => {
         let getData = async () => {
             let dataGot = await axios.get("https://rcz-backend-arvinth.herokuapp.com/api/getGenieRecordsByAllCategories")
@@ -86,11 +88,12 @@ export default function VerticalTabs() {
     const handleCalc1 = (jobFromData, priceFromData, ratingFromData, descriptionFormData)=>{
 
         let newObj = calculater;
-        if(newObj[jobFromData]>0){
+        if(newObj[jobFromData]>0 && parseInt (priceFromData) != 0){
             newObj[jobFromData] -= parseInt (priceFromData)
-        }else{
-            newObj[jobFromData] = parseInt(priceFromData)
         }
+        // else{
+        //      newObj=" add  job first "
+        //  }
         setCalculater(newObj);
         console.log(calculater)
         
@@ -154,7 +157,7 @@ export default function VerticalTabs() {
 
                         </Box>
                         <div style={{display:"flex",justifyContent:"end"}}>
-                        <Footers listAddItems={"continue"} />
+                        <Footers  listAddItems={"Total Amount"} />
                         </div>
                     </>
                 ) : (<Spin />)}
