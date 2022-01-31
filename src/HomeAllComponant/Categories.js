@@ -39,7 +39,7 @@ function Categories() {
     return (
 
         <Row style={{ display: "flex", justifyContent: "center", height: "10rem", marginTop: "10rem" }}>
-            <Col lg={9}>
+            <Col lg={6}>
                 <Row style={{ backgroundColor: "white", position: "relative", top: "-6rem", padding: "10px", color: "black" }}>
                     {categoriesWithoutDups.length ? (categoriesWithoutDups.map(e => (
                         <Col lg={3}>

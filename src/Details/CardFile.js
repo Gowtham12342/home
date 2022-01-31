@@ -7,7 +7,7 @@ const { Meta } = Card;
 
 
 
-function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormData }) {
+function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormData, calcSet, newSet }) {
   return (
     <Card
       style={{ width: 350, height: "fit-content" }}
@@ -44,12 +44,15 @@ function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormD
           <Row><p><h6><b>Description</b></h6></p>{descriptionFormData}</Row>
         </Col>
         <Col style={{ marginLeft: "10rem", display: "flex", justifyContent: "space-around" }}>
-          <Button 
+        
+          <Button
+          
+          onClick={()=>{newSet(jobFromData, priceFromData, ratingFromData, descriptionFormData)}}
             style={{ display: "inline" }} type='primary'>
             -
           </Button>
           <Button
-           
+
             style={{
 
               height: "2rem",
@@ -66,9 +69,11 @@ function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormD
             Add
 
           </Button>
-          <Button 
+          
+          <Button
+          onClick={()=>{calcSet (jobFromData, priceFromData, ratingFromData, descriptionFormData)}}
             style={{ display: "inline" }} type='primary'>
-            +
+              +
           </Button>
         </Col>
 

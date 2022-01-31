@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import axios from 'axios';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import CardFile from './CardFile'
 import { Spin } from 'antd';
 import Footers from './Footers';
@@ -53,7 +53,7 @@ export default function VerticalTabs() {
     const [categoriesTotaldata, setCategoriesTotaldata] = useState([]);
     const [removedDups, setRemovedDups] = useState([]);
     const [contenttoFilter, setContenttoFilter] = useState([]);
-
+    const [calculater, setCalculater] = useState([]);
     useEffect(() => {
         let getData = async () => {
             let dataGot = await axios.get("https://rcz-backend-arvinth.herokuapp.com/api/getGenieRecordsByAllCategories")
@@ -83,7 +83,32 @@ export default function VerticalTabs() {
         getData();
     }, []);
 
+    const handleCalc1 = (jobFromData, priceFromData, ratingFromData, descriptionFormData)=>{
 
+        let newObj = calculater;
+        if(newObj[jobFromData]>0){
+            newObj[jobFromData] -= parseInt (priceFromData)
+        }else{
+            newObj[jobFromData] = parseInt(priceFromData)
+        }
+        setCalculater(newObj);
+        console.log(calculater)
+        
+            }
+
+    const handleCalc = (jobFromData, priceFromData, ratingFromData, descriptionFormData)=>{
+        
+        let newObj1 = calculater;
+        if(newObj1[jobFromData]){
+            newObj1[jobFromData] += parseInt(priceFromData)
+        }else{
+            newObj1[jobFromData] = parseInt(priceFromData)
+        }
+        setCalculater(newObj1);
+        console.log(calculater)
+    }
+
+   
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -120,7 +145,7 @@ export default function VerticalTabs() {
                             <TabPanel value={value} index={0}>
                                 {contenttoFilter.map(e => (
 
-                                    <CardFile jobFromData={e.job} priceFromData={e.price} ratingFromData={e.rating} descriptionFormData={e.description} />
+                                    <CardFile calcSet = {handleCalc} newSet = {handleCalc1} jobFromData={e.job} priceFromData={e.price} ratingFromData={e.rating} descriptionFormData={e.description} />
 
                                 ))}
 
@@ -128,7 +153,9 @@ export default function VerticalTabs() {
 
 
                         </Box>
+                        <div style={{display:"flex",justifyContent:"end"}}>
                         <Footers listAddItems={"continue"} />
+                        </div>
                     </>
                 ) : (<Spin />)}
         </>
