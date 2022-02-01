@@ -10,14 +10,18 @@ const { Meta } = Card;
 function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormData, calcSet, newSet }) {
   return (
     <Card
-      style={{ width: 350, height: "fit-content" }}
+      style={{ width: 325, height: "fit-content",borderColor:"gray",marginRight:"13rem" }}
       cover={
-        <div className='carding' style={{ display: "flex" }}>
+        <div className='carding'style={{display:"flex"}} >
           <>
             <img
               alt="example"
               src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
               width="250"
+              display="flex"
+              justifyContent="center"
+              
+                         
             />
           </>
         </div>
@@ -41,7 +45,16 @@ function CardFile({ jobFromData, priceFromData, ratingFromData, descriptionFormD
 
               </div>
             </Row></Col>
-          <Row><p><h6><b>Description</b></h6></p>{descriptionFormData}</Row>
+          <Row><u><p><h6><b>Description</b></h6></p></u>{descriptionFormData.indexOf(",") != -1 ? descriptionFormData.split(",").map(e=>(
+      <Row style={{    color : "#302929",
+        marginRight : "6px"}}>
+        <Col>
+      *{e}</Col>
+      </Row>
+
+          )):
+          <Row>{descriptionFormData}</Row>
+        }</Row>
         </Col>
         <Col style={{ marginLeft: "10rem", display: "flex", justifyContent: "space-around" }}>
         
